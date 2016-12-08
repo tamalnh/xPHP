@@ -11,16 +11,16 @@ if (isset($_POST["btn"])) {
         if (!$db_connect) {
             die("DataBase Connection is faild!" . mysqli_errno($db_connect));
         }
-        $student_name = $_POST['student_name']; #input name take on a variable
-        $student_email = $_POST['student_email']; #input email take on a variable
-        $student_phone = $_POST['student_phone']; #input phone take on a variable
-        $student_address = $_POST['student_address']; ##input address take on a variable
+        $student_name = $_POST['student_name']; #input value take on a variable
+        $student_email = $_POST['student_email']; #input value take on a variable
+        $student_phone = $_POST['student_phone']; #input value take on a variable
+        $student_address = $_POST['student_address']; #input value take on a variable
 
         if (!empty($student_name && $student_email && $student_phone && $student_address)) {
             $sql = "INSERT INTO tbl_student(student_name, student_email, student_phone, student_address) VALUES('$student_name', '$student_email', '$student_phone', '$student_address')";
         } else {
-            $error_message = "Field Should Not Be Empty!";
-            return $error_message;
+            $message = "Field Should Not Be Empty!";
+            return $message;
         }
 
         if (mysqli_query($db_connect, $sql)) {
@@ -31,7 +31,7 @@ if (isset($_POST["btn"])) {
         }
     }
 
-    $message = $error_message = save_student_info();
+    $message = save_student_info();
 }
 ?>
 
